@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>いいね！投票ページ</title>
+    <!-- LikeBtn.com BEGIN -->
+<span class="likebtn-wrapper" data-theme="custom" data-btn_size="68" data-f_size="20" data-icon_size="31" data-icon_l="hrt6" data-icon_d="trsh" data-lang="ja" data-i18n_like="いいね" data-ef_voting="heartbeat" data-white_label="true" data-identifier="item_1" data-dislike_enabled="false" data-counter_clickable="true" data-counter_zero_show="true" data-counter_count="true" data-i18n_after_like="ありがとう！"></span>
+<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+<!-- LikeBtn.com END -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const artworkId = urlParams.get('id'); // URLの?id= の値を取得
+
+            if (artworkId) {
+                const itemName = urlParams.get('name') || '作品'; // 作品名もURLから取得
+                document.getElementById('artwork-title').textContent = itemName;
+                document.getElementById('artwork-id-display').textContent = 'ID: ' + artworkId;
+
+                // Step 3で決めたルールに基づき、likebtnのItem IDを設定
+                const likebtnItemId = 'artwork-' + artworkId;
+
+                // likebtnのボタン要素のdata-item-id属性を動的に設定
+                const likeButton = document.getElementById('like-button-placeholder');
+                likeButton.setAttribute('data-item-id', likebtnItemId);
+
+                // likebtnの再読み込み（動的にdata-item-idを設定した後）
+                if (typeof likebtn !== 'undefined') {
+                    likebtn.init();
+                }
+            } else {
+                document.getElementById('content').innerHTML = '作品IDが見つかりませんでした。';
+            }
+        });
+    </script>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+        }
+        #like-button-placeholder {
+            margin: 30px auto;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>「<span id="artwork-title">作品</span>」へのいいね！</h1>
+        <p id="artwork-id-display"></p>
+        <p>この作品が気に入ったら下のボタンを押してください。</p>
+
+        <div 
+            id="like-button-placeholder"
+            class="likebtn-wrapper"
+            data-identifier="default_button"
+            data-style="standard"
+            data-share-enabled="false"
+            data-counter-zero-show="true"
+            data-voting-enabled="true"
+        ></div>
+
+        <p>※投票は作品につき一回のみカウントされます。</p>
+    </div>
+</body>
+</html>
