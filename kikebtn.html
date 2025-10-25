@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LikeBtn 表示テスト</title>
+
+    <script>
+        (function(l, i, k, e, b, t, n) {
+            l['LikeBtnObject'] = b;
+            l[b] = l[b] || function() {
+                (l[b].q = l[b].q || []).push(arguments)
+            };
+            t = i.createElement(k), n = i.getElementsByTagName(k)[0];
+            t.async = 1;
+            t.src = e;
+            t.setAttribute('data-site-id', 'LB-XXXXXXX'); // ← ここにあなたのサイトIDを入れる
+            n.parentNode.insertBefore(t, n)
+        })(window, document, 'script', '//w.likebtn.com/js/w/widget.js', 'likebtn');
+    </script>
+
 </head>
 <body>
 
@@ -11,6 +26,6 @@
     <p>この下にボタンが表示されるはずです。</p>
 
     <span class="likebtn-wrapper" data-theme="custom" data-btn_size="68" data-f_size="20" data-icon_size="31" data-icon_l="hrt6" data-icon_d="trsh" data-lang="ja" data-i18n_like="いいね" data-ef_voting="heartbeat" data-identifier="item_1" data-dislike_enabled="false" data-i18n_after_like="ありがとう！" data-i18n_like_tooltip="押しちゃう？" data-i18n_unlike_tooltip="やっぱなし！"></span>
-    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-    </body>
+
+</body>
 </html>
